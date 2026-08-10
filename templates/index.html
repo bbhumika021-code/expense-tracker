@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Expense Tracker</h1>
+
+    <form method="POST">
+        <input type="text" name="expense_name" placeholder="Expense Name">
+
+        <br><br>
+
+        <input type="number" name="amount" placeholder="Amount">
+
+        <br><br>
+
+        <button type="submit">Add Expense</button>
+    </form>
+    <h2>All Expenses</h2>
+
+{% for expense in expenses %}
+<p>
+    {{ expense["name"] }} - ${{ expense["amount"] }}
+
+    <a href="/edit/{{ expense['id'] }}">Edit</a>
+
+    <a href="/delete/{{ expense['id'] }}" class="delete-btn">Delete</a>
+</p>
+{% endfor %}
+
+<h2>Total: ${{ total }}</h2>
+
+</body>
+</html>
